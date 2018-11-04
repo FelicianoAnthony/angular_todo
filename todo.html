@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+	<script src="script.js"></script>
+
+	<title>Creating To-Do List - Part 1</title>
+
+	<style> 
+		span.done-true {
+			color:gray;
+			font-style:italic;
+			text-decoration: line-through;
+		}
+		span[contentEditable="true"]  {
+			background: gray;
+			padding:3px;
+		}
+		
+	</style>
+
+</head>
+
+
+<body ng-app="mainApp" ng-controller="app">
+	<h1 style="text-align:center;" >  Add A Task </h1>
+	<input  ng-model="task" ng_keyup="searchEnter()" type="text" style="display:block;  margin:0 auto; padding:5px; font-size:15px; width:300px;">
+
+	<div id="tasksToShow"> 
+
+		<ul> 
+			<li ng-repeat="oneTask in tasks track by $index">
+				<input type="checkbox" ng-model="oneTask.status" > 
+				<span contentEditable="false" ng-dblclick="contentEdit(oneTask.taskMessage)" ng-model="oneTask.taskMessage" ng-keyup="enterAgain(oneTask.taskMessage)"  class="done-{{oneTask.status}}"> 
+					{{oneTask.taskMessage}}
+				</span>
+
+			</li>
+
+		</ul>
+	</div>
+
+</body>
+</html>
